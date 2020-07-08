@@ -1,7 +1,7 @@
 <template>
   <div>
-    <ul>
-      <li v-for="(task, index) in tasks" :key="task.id">
+    <ul class="task">
+      <li class="task-item" v-for="(task, index) in tasks" :key="task.id">
         <input
           type="checkbox"
           :name="task.id"
@@ -9,7 +9,7 @@
           @click="statusItem(index)"
           :checked="task.status"
         />
-        <p :class="{ doneTask: task.status }">{{ task.text }}</p>
+        <p :class="{ taskDone: task.status }">{{ task.text }}</p>
         <button class="btn" type="button" @click="deleteItem(index)">delete</button>
       </li>
     </ul>
@@ -20,14 +20,8 @@
 export default {
   props: {
     tasks: {
-      type: Object,
+      type: Array,
       required: true
-    },
-    statusChanged: {
-      type: Function
-    },
-    deleteTask: {
-      type: Function
     }
   },
   methods: {
@@ -40,3 +34,24 @@ export default {
   }
 };
 </script>
+
+<style>
+.task {
+  margin-top: 20px;
+}
+.task-item {
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+}
+.btn {
+  padding: 10px 20px;
+  background-color: #060e4e;
+  color: #dddddd;
+  border-radius: 20px;
+  margin-left: 20px;
+}
+.taskDone {
+  text-decoration: line-through;
+}
+</style>

@@ -1,33 +1,34 @@
 <template>
   <div>
-    <form @submit.prevent="addItem(newTask)">
+    <form @submit.prevent="addItem">
       <label>
-        <input type="text" v-model="newTask" placeholder="New task" @keyup.enter="addItem(newTask)" />
+        <input type="text" v-model="newTask" placeholder="New task" @keyup.enter="addItem" />
       </label>
-      <button class="btn" @click="addItem(newTask)" type="button">Add</button>
+      <button class="btn" @click="addItem" type="button">Add</button>
     </form>
   </div>
 </template>
 
 <script>
 export default {
-  props: {
-    tasks: {
-      type: Object,
-      required: true
-    },
-    addTask: {
-      type: Function
-    },
-    newTask: {
-      type: String,
-      required: true
-    }
+  data: function() {
+    return {
+      newTask: ""
+    };
   },
   methods: {
-    addItem(newTask) {
-      this.$emit("addTask", newTask);
+    addItem() {
+      this.$emit("addTask", this.newTask);
+      this.newTask = "";
     }
   }
 };
 </script>
+
+<style scoped>
+input {
+  padding: 10px 30px;
+  border: #190647 4px inset;
+  border-radius: 15px;
+}
+</style>

@@ -40,7 +40,6 @@ export default {
   },
   methods: {
     addTask(newTask) {
-      console.log(newTask);
       if (newTask !== "") {
         this.tasks.push({
           id: Date.now(),

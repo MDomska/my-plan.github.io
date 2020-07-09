@@ -50,7 +50,7 @@ export default {
         this.updateTasks();
       }
     },
-    deleteTask: function(index) {
+    deleteTask(index) {
       this.tasks.splice(index, 1);
       this.updateTasks();
     },

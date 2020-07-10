@@ -1,8 +1,8 @@
 <template>
   <div>
     <header class="header">
-      <h1 v-if="tasks.length > 1">I have {{ tasks.length }} tasks</h1>
-      <h1 v-else-if="tasks.length === 1">I have {{ tasks.length }} task</h1>
+      <h1 v-if="numOfTasks > 1">I have {{ numOfTasks }} tasks</h1>
+      <h1 v-else-if="numOfTasks === 1">I have {{ numOfTasks }} task</h1>
       <h1 v-else>I don't have any tasks</h1>
     </header>
   </div>
@@ -11,9 +11,9 @@
 <script>
 export default {
   props: {
-    tasks: {
-      type: Array,
-      required: true
+    numOfTasks: {
+      type: Number,
+      default: 0
     }
   }
 };

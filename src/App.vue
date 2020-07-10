@@ -5,12 +5,12 @@
 </template>
  
 <script>
-import tasksList from "./components/tasksList.vue";
+import TasksList from "./components/TasksList";
 
 export default {
   name: "App",
   components: {
-    tasksList
+    TasksList
   }
 };
 </script>

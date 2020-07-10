@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <tasks-header :tasks="tasks" />
+    <tasks-header :numOfTasks="tasks.length" />
     <div class="wraper">
       <tasks-add-item @addTask="addTask($event)" />
       <tasks-list-items :tasks="tasks" @statusChanged="statusChanged" @deleteTask="deleteTask" />
@@ -9,16 +9,16 @@
 </template>
 
 <script>
-import tasksHeader from "./tasksHeader";
-import tasksListItems from "./tasksListItems";
-import tasksAddItem from "./tasksAddItem";
+import TasksHeader from "./TasksHeader";
+import TasksListItems from "./TasksListItems";
+import TasksAddItem from "./TasksAddItem";
 
 export default {
-  name: "tasksList",
+  name: "TasksList",
   components: {
-    tasksHeader,
-    tasksListItems,
-    tasksAddItem
+    TasksHeader,
+    TasksListItems,
+    TasksAddItem
   },
   data: function() {
     return {
@@ -29,19 +29,19 @@ export default {
       ]
     };
   },
-  async mounted() {
+  mounted() {
     if (localStorage.getItem("tasks")) {
       try {
-        this.tasks = await JSON.parse(localStorage.getItem("tasks"));
+        this.tasks = JSON.parse(localStorage.getItem("tasks"));
       } catch (e) {
-        localStorage.deleteItem("tasks");
+        localStorage.removeItem("tasks");
       }
     }
   },
   methods: {
     addTask(newTask) {
       if (newTask !== "") {
-        this.tasks.push({
+        this.tasks.unshift({
           id: Date.now(),
           text: newTask,
           status: false

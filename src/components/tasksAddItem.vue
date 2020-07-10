@@ -4,7 +4,7 @@
       <label>
         <input type="text" v-model="newTask" placeholder="New task" @keyup.enter="addItem" />
       </label>
-      <button class="btn" @click="addItem" type="button">Add</button>
+      <button class="btn" type="submit">Add</button>
     </form>
   </div>
 </template>
